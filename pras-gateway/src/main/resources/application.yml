@@ -1,0 +1,36 @@
+spring:
+  cloud:
+    gateway:
+      server:
+        webflux:
+          routes:
+            - id: allocation-service
+              uri: lb://ALLOCATION-SERVICE
+              predicates:
+                - Path=/allocation/**
+              filters:
+                - AuthenticationFilter
+                - StripPrefix=1
+
+            - id: employee-service
+              uri: lb://EMPLOYEE-SERVICE
+              predicates:
+                - Path=/employee/**
+              filters:
+                - AuthenticationFilter
+                - StripPrefix=1
+
+            - id: project-service
+              uri: lb://PROJECT-SERVICE
+              predicates:
+                - Path=/project/**
+              filters:
+                - AuthenticationFilter
+                - StripPrefix=1
+
+            - id: auth-service
+              uri: lb://AUTH-SERVICE
+              predicates:
+                - Path=/auth/**
+              filters:
+                - StripPrefix=1

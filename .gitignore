@@ -1,0 +1,75 @@
+# ===============================
+# Java / Spring Boot
+# ===============================
+target/
+*.class
+*.log
+*.jar
+*.war
+*.ear
+
+# ===============================
+# Maven
+# ===============================
+.mvn/wrapper/maven-wrapper.jar
+.mvn/timing.properties
+dependency-reduced-pom.xml
+
+# ===============================
+# Gradle (if any project uses it)
+# ===============================
+.gradle/
+build/
+
+# ===============================
+# IDEs
+# ===============================
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Eclipse / Spring Tool Suite (STS)
+.project
+.classpath
+.settings/
+.springBeans
+
+# VS Code
+.vscode/
+
+# ===============================
+# OS files
+# ===============================
+.DS_Store
+Thumbs.db
+
+# ===============================
+# Logs & Temp
+# ===============================
+logs/
+tmp/
+*.tmp
+
+# ===============================
+# Environment / Secrets
+# ===============================
+.env
+*.env
+
+# ===============================
+# Application config (optional)
+# ===============================
+application-local.yml
+application-dev.yml
+application-prod.yml
+
+# ===============================
+# Test Reports
+# ===============================
+surefire-reports/
+
+
+.metadata/

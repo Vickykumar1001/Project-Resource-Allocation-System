@@ -11,10 +11,10 @@ import java.util.List;
 @AllArgsConstructor
 public class EmployeeResponseDto {
     private Long id;
-    private Long userId;
-    private String fullName; // from Auth
-    private String email;    // from Auth
-    private String role;     // from Auth
+    private Long userId;     // from auth
+    private String fullName; // from auth
+    private String email;    // from auth
+    private String role;     // from auth
     private Integer experienceYears;
     private String currentStatus;
     private Long currentProjectId;

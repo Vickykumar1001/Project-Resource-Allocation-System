@@ -19,18 +19,13 @@ import com.tcs.employee.service.EmployeeService;
 
 import lombok.RequiredArgsConstructor;
 
-/**
- * Internal endpoints for other microservices to call.
- * Protect these in production (require service-to-service auth).
- */
 @RestController
-@RequestMapping("/api/internal/employees")
+@RequestMapping("employees/internal")
 @RequiredArgsConstructor
 public class InternalEmployeeController {
 
     private final EmployeeService service;
 
-    // GET /api/internal/employees?ids=1,2,3
     @GetMapping
     public ResponseEntity<?> getByIds(@RequestParam(required = false) String ids,
                                       @RequestParam(defaultValue = "0") int page,
@@ -44,7 +39,6 @@ public class InternalEmployeeController {
             List<EmployeeResponseDto> list = service.getByIds(parsed);
             return ResponseEntity.ok(list);
         } else {
-            // forward to public paginated endpoint by building request parameters - reuse service.list with null filters
             var p = service.list(null, null, null, null, PageRequest.of(page, size, Sort.by("id").ascending()));
             return ResponseEntity.ok(p);
         }

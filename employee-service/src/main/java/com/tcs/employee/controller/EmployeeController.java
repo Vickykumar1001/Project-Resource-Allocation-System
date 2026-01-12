@@ -1,18 +1,31 @@
 package com.tcs.employee.controller;
 
-import com.tcs.employee.dto.*;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.tcs.employee.dto.EmployeeCreateRequest;
+import com.tcs.employee.dto.EmployeeResponseDto;
+import com.tcs.employee.dto.EmployeeUpdateRequest;
 import com.tcs.employee.entity.EmployeeProfile;
 import com.tcs.employee.service.EmployeeService;
-import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.*;
-import org.springframework.http.*;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("/api/employees")
+@RequestMapping("/employees")
 @RequiredArgsConstructor
 public class EmployeeController {
 
@@ -23,16 +36,16 @@ public class EmployeeController {
         EmployeeResponseDto dto = service.createEmployee(req);
         return ResponseEntity.status(HttpStatus.CREATED).body(dto);
     }
+    
+    @GetMapping("/{id}")
+    public ResponseEntity<EmployeeResponseDto> getById(@PathVariable Long id) {
+        EmployeeResponseDto dto = service.getById(id);
+        return ResponseEntity.ok(dto);
+    }
 
     @PutMapping("/{id}")
     public ResponseEntity<EmployeeResponseDto> update(@PathVariable Long id, @RequestBody EmployeeUpdateRequest req) {
         EmployeeResponseDto dto = service.updateEmployee(id, req);
-        return ResponseEntity.ok(dto);
-    }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<EmployeeResponseDto> getById(@PathVariable Long id) {
-        EmployeeResponseDto dto = service.getById(id);
         return ResponseEntity.ok(dto);
     }
 

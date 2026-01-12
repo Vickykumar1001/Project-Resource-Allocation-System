@@ -5,7 +5,6 @@ import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 
 import java.util.List;
-import jakarta.validation.constraints.NotNull;
 
 @Data
 @NoArgsConstructor

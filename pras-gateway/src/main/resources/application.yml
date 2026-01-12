@@ -15,10 +15,9 @@ spring:
             - id: employee-service
               uri: lb://EMPLOYEE-SERVICE
               predicates:
-                - Path=/employee/**
+                - Path=/employees/**
               filters:
                 - AuthenticationFilter
-                - StripPrefix=1
 
             - id: project-service
               uri: lb://PROJECT-SERVICE

@@ -6,15 +6,15 @@ import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 
 @Entity
-@Table(name = "skill", uniqueConstraints = @UniqueConstraint(columnNames = {"name"}))
+@Table(name = "skill", uniqueConstraints = @UniqueConstraint(columnNames = { "name" }))
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Skill {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    private String name;
+	private String name;
 }

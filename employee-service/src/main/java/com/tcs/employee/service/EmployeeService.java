@@ -43,7 +43,6 @@ public class EmployeeService {
 
     @Transactional
     public EmployeeResponseDto createEmployee(EmployeeCreateRequest req) {
-        // ensure userId doesn't already have profile
         UserDto user=fetchUserDtoByToken();
         if(user==null) {
         	throw new IllegalArgumentException("No user exists for userId: " + req.getUserId());
@@ -76,9 +75,7 @@ public class EmployeeService {
         if (req.getLocation() != null) profile.setLocation(req.getLocation());
         profile = profileRepo.save(profile);
 
-        // replace skills if provided
         if (req.getSkills() != null) {
-            // remove existing
             if (profile.getSkills() != null) {
                 employeeSkillRepo.deleteAll(profile.getSkills());
                 profile.getSkills().clear();
@@ -104,7 +101,6 @@ public class EmployeeService {
             toSave.add(es);
         }
         employeeSkillRepo.saveAll(toSave);
-        // refresh profile.skills
         profile.setSkills(employeeSkillRepo.findAll().stream()
                 .filter(es -> es.getEmployee().getId().equals(profile.getId()))
                 .collect(Collectors.toList()));
@@ -157,10 +153,6 @@ public class EmployeeService {
         return EmployeeMapper.toResponseDto(p, fetchUserDto(p.getUserId()));
     }
 
-    /**
-     * Claim employee for allocation. Atomic: uses optimistic locking via @Version.
-     * Returns true if claim succeeded.
-     */
     @Transactional
     public boolean claimForAllocation(Long employeeId, Long projectId) {
         EmployeeProfile p = profileRepo.findById(employeeId)
@@ -186,7 +178,6 @@ public class EmployeeService {
         profileRepo.save(p);
     }
 
-    // helper: fetch single user via Feign batch call
     private UserDto fetchUserDto(Long userId) {
         if (userId == null) return null;
         String ids = String.valueOf(userId);

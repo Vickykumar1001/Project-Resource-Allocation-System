@@ -3,6 +3,7 @@ package com.tcs.auth.config;
 import java.io.IOException;
 
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,47 +15,60 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
-//Remove @Component
+import tools.jackson.databind.ObjectMapper;
+
 @RequiredArgsConstructor
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
- private final JwtService jwtService;
- private final UserDetailsService userDetailsService;
- @Override
- protected void doFilterInternal(HttpServletRequest req, HttpServletResponse res, FilterChain chain)
-         throws IOException, ServletException {
+	private final JwtService jwtService;
+	private final UserDetailsService userDetailsService;
 
-     final String header = req.getHeader(HttpHeaders.AUTHORIZATION);
-     final String token;
-     final String userEmail;
+	@Override
+	protected void doFilterInternal(HttpServletRequest req, HttpServletResponse res, FilterChain chain)
+			throws IOException, ServletException {
 
-     // 1. If no token, just move on to the next filter (SecurityConfig will decide if access is allowed)
-     if (header == null || !header.startsWith("Bearer ")) {
-         chain.doFilter(req, res);
-         return;
-     }
+		final String header = req.getHeader(HttpHeaders.AUTHORIZATION);
+		final String token;
+		final String userEmail;
 
-     token = header.substring(7);
-     
-     try {
-         userEmail = jwtService.extractUsername(token);
+		if (header == null || !header.startsWith("Bearer ")) {
+			chain.doFilter(req, res);
+			return;
+		}
 
-         if (userEmail != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-             UserDetails userDetails = this.userDetailsService.loadUserByUsername(userEmail);
-             
-             // 2. Check if token is valid for this user
-             if (jwtService.isTokenValid(token, userDetails)) {
-                 UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
-                         userDetails, null, userDetails.getAuthorities());
-                 SecurityContextHolder.getContext().setAuthentication(authToken);
-             }
-         }
-     } catch (Exception e) {
-         // Log the error, but DO NOT throw it. 
-         // Just let the request proceed. If it's a protected route, 
-         // Spring Security will block it later automatically.
-     }
+		token = header.substring(7);
 
-     chain.doFilter(req, res);
- }
+		try {
+			userEmail = jwtService.extractUsername(token);
+
+			if (userEmail != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+				UserDetails userDetails = this.userDetailsService.loadUserByUsername(userEmail);
+
+				if (jwtService.isTokenValid(token, userDetails)) {
+					UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(userDetails,
+							null, userDetails.getAuthorities());
+					SecurityContextHolder.getContext().setAuthentication(authToken);
+				}
+			}
+		} catch (Exception e) {
+			sendUnauthorized(res, req, e.getMessage());
+		}
+
+		chain.doFilter(req, res);
+	}
+
+	private void sendUnauthorized(HttpServletResponse res, HttpServletRequest req, String message) throws IOException {
+
+		res.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+		res.setContentType(MediaType.APPLICATION_JSON_VALUE);
+
+		var body = new java.util.HashMap<String, Object>();
+		body.put("timestamp", System.currentTimeMillis());
+		body.put("status", 401);
+		body.put("error", "Unauthorized");
+		body.put("message", message != null ? message : "Invalid or expired token");
+		body.put("path", req.getRequestURI());
+
+		new ObjectMapper().writeValue(res.getWriter(), body);
+	}
 }

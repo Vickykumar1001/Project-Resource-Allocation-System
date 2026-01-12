@@ -37,32 +37,40 @@ public class AuthController {
 
 	private final AuthService authService;
 
-	@PostMapping("/api/auth/register")
+	@PostMapping("/auth/register")
 	public ResponseEntity<UserDto> register(@Valid @RequestBody RegisterRequest req) {
 		System.out.println("coming here");
 		var dto = authService.register(req);
 		return ResponseEntity.status(HttpStatus.CREATED).body(dto);
 	}
 
-	@PostMapping("/api/auth/login")
+	@PostMapping("/auth/login")
 	public ResponseEntity<LoginResponse> login(@Valid @RequestBody LoginRequest req) {
 		var resp = authService.login(req);
 		return ResponseEntity.ok(resp);
 	}
 
-	@GetMapping("/api/auth/me")
-	public ResponseEntity<UserDto> me(Authentication authentication) {
-		if (authentication == null || !authentication.isAuthenticated())
-			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-		String email = ((org.springframework.security.core.userdetails.User) authentication.getPrincipal())
-				.getUsername();
-		UserDto dto = authService.getByEmail(email);
-		return dto != null ? ResponseEntity.ok(dto) : ResponseEntity.notFound().build();
+	@GetMapping("/auth/user-from-token")
+	public ResponseEntity<UserDto> getUserFromToken() {
+		ServletRequestAttributes attrs = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+		HttpServletRequest request = attrs.getRequest();
+		String auth = request.getHeader("Authorization");
+		if (auth == null || !auth.startsWith("Bearer ")) {
+			throw new com.tcs.auth.exception.BadRequestException("Authorization header missing or malformed");
+		}
+		UserDto dto = authService.getUserFromToken(auth.substring(7));
+		return ResponseEntity.ok(dto);
 	}
 
-	// internal endpoint: GET /api/internal/users?ids=1,2,3
-	// or GET /api/internal/users?page=0&size=20
-	@GetMapping("/api/internal/users")
+	@PostMapping("/auth/validate")
+	public ResponseEntity<TokenValidationResponse> validateToken(
+			@RequestHeader(value = "Authorization", required = false) String authHeader) {
+
+		TokenValidationResponse response = authService.validate(authHeader);
+		return ResponseEntity.ok(response);
+	}
+
+	@GetMapping("/auth/internal/users")
 	public ResponseEntity<?> internalUsers(@RequestParam(required = false) String ids,
 			@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "20") int size) {
 
@@ -77,29 +85,5 @@ public class AuthController {
 			return ResponseEntity.ok(p);
 		}
 	}
-
-	@GetMapping("/api/auth/user-from-token")
-	public ResponseEntity<UserDto> getUserFromToken() {
-
-		ServletRequestAttributes attrs = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
-
-		HttpServletRequest request = attrs.getRequest();
-		String token = request.getHeader("Authorization");
-
-		UserDto dto = authService.getUserFromToken(token.substring(7));
-		return ResponseEntity.ok(dto);
-	}
-	 @PostMapping("api/auth/validate")
-	    public ResponseEntity<TokenValidationResponse> validateToken(
-	            @RequestHeader(value = "Authorization", required = false) String authHeader) {
-
-	        TokenValidationResponse response = authService.validate(authHeader);
-
-	        if (!response.isValid()) {
-	            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
-	        }
-
-	        return ResponseEntity.ok(response);
-	    }
 
 }

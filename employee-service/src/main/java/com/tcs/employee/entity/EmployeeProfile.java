@@ -22,7 +22,7 @@ public class EmployeeProfile {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // id from Auth service
+    // id from auth service
     private Long userId;
 
     private Integer experienceYears;
@@ -30,7 +30,7 @@ public class EmployeeProfile {
     @Enumerated(EnumType.STRING)
     private CurrentStatus currentStatus;
 
-    private Long currentProjectId; // nullable
+    private Long currentProjectId; 
 
     private String location;
 
@@ -40,7 +40,7 @@ public class EmployeeProfile {
     private Instant updatedAt;
 
     @Version
-    private Long version; // optimistic locking
+    private Long version;
 
     @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<EmployeeSkill> skills;

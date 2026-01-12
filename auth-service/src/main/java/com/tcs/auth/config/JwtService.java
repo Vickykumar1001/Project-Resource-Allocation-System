@@ -44,7 +44,6 @@ public class JwtService {
                 .compact();
     }
 
-    // New: Helper to extract any claim
     public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
         final Claims claims = extractAllClaims(token);
         return claimsResolver.apply(claims);
@@ -62,13 +61,12 @@ public class JwtService {
         return extractClaim(token, Claims::getSubject);
     }
 
-    // Modified: Return boolean instead of throwing exception
     public boolean isTokenValid(String token, UserDetails userDetails) {
         try {
             final String username = extractUsername(token);
             return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
         } catch (Exception e) {
-            return false; // If parsing fails, token is invalid
+            return false;
         }
     }
 

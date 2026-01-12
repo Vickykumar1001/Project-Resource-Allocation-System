@@ -32,5 +32,3 @@ spring:
               uri: lb://AUTH-SERVICE
               predicates:
                 - Path=/auth/**
-              filters:
-                - StripPrefix=1

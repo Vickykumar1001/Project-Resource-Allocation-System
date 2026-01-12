@@ -14,19 +14,16 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import com.tcs.auth.service.CustomUserDetailsService;
+
+import lombok.AllArgsConstructor;
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
+@AllArgsConstructor
 public class SecurityConfig {
 
     private final JwtService jwtService;
     private final CustomUserDetailsService customUserDetailsService;
-
-    public SecurityConfig(JwtService jwtService,
-                          CustomUserDetailsService customUserDetailsService) {
-        this.jwtService = jwtService;
-        this.customUserDetailsService = customUserDetailsService;
-    }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -35,13 +32,11 @@ public class SecurityConfig {
             .sessionManagement(session ->
                     session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(auth -> auth
-                    // Use a more robust matcher
-                    .requestMatchers("/api/auth/**").permitAll() 
-                    .requestMatchers("/api/internal/**").authenticated()
+            		.requestMatchers("/auth/internal/**").authenticated()
+                    .requestMatchers("/auth/**").permitAll()
                     .anyRequest().authenticated()
             )
             .userDetailsService(customUserDetailsService)
-            // Initialize filter here manually
             .addFilterBefore(new JwtAuthenticationFilter(jwtService, customUserDetailsService), 
                              UsernamePasswordAuthenticationFilter.class);
 

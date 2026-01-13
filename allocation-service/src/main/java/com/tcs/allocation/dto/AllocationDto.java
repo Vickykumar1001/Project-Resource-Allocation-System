@@ -1,15 +1,16 @@
 package com.tcs.allocation.dto;
 
-import lombok.Data;
 import java.time.Instant;
 
+import lombok.Data;
+
 @Data
-public class AllocationAttemptDto {
+public class AllocationDto {
     private Long id;
-    private Long candidateId;
     private Long employeeId;
+    private Long projectId;
     private Long resourceRequestId;
+    private Long allocatedByUserId;
+    private Instant allocatedAt;
     private String status;
-    private String failureReason;
-    private Instant attemptedAt;
 }

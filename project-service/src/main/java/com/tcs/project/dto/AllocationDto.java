@@ -11,5 +11,5 @@ public class AllocationDto {
     private Long resourceRequestId;
     private Long allocatedByUserId;
     private Instant allocatedAt;
-    private String status; // ALLOCATED / RELEASED
+    private String status;
 }

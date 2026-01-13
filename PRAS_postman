@@ -1,0 +1,1038 @@
+{
+	"info": {
+		"_postman_id": "8f524444-ef7a-450e-bd2d-cd527497fda2",
+		"name": "My Collection",
+		"description": "### Welcome to Postman! This is your first collection. \n\nCollections are your starting point for building and testing APIs. You can use this one to:\n\n• Group related requests\n• Test your API in real-world scenarios\n• Document and share your requests\n\nUpdate the name and overview whenever you’re ready to make it yours.\n\n[Learn more about Postman Collections.](https://learning.postman.com/docs/collections/collections-overview/)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "51400306",
+		"_collection_link": "https://as920815-vickykumar-9619396.postman.co/workspace/Vicky-Kumar's-Workspace~fbc13fe9-835d-47c3-8d99-84cbee01e382/collection/51400306-8f524444-ef7a-450e-bd2d-cd527497fda2?action=share&source=collection_link&creator=51400306"
+	},
+	"item": [
+		{
+			"name": "Project_Resource_Allocation_System",
+			"item": [
+				{
+					"name": "auth-service",
+					"item": [
+						{
+							"name": "register",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"fullName\": \"Vicky Kumar\",\r\n    \"email\": \"vicky.kumar@tcs.com\",\r\n    \"password\": \"Password@123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{pras-gateway}}/auth/register",
+									"host": [
+										"{{pras-gateway}}"
+									],
+									"path": [
+										"auth",
+										"register"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "login",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"vicky.kumar@tcs.com\",\r\n    \"password\": \"Password@123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{pras-gateway}}/auth/login",
+									"host": [
+										"{{pras-gateway}}"
+									],
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "validate-token",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiRU1QTE9ZRUUiLCJzdWIiOiJ2aWNreS5rdW1hckB0Y3MuY29tIiwiaWF0IjoxNzY4MzE1MTc0LCJleHAiOjE3NjgzMTg3NzR9.bCdLdYt7nIwkqSWvcv85veoYUhvC8VrOMAqeB-eV8EQ",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{pras-gateway}}/auth/validate",
+									"host": [
+										"{{pras-gateway}}"
+									],
+									"path": [
+										"auth",
+										"validate"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "user-from-token",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiRU1QTE9ZRUUiLCJzdWIiOiJ2aWNreS5rdW1hckB0Y3MuY29tIiwiaWF0IjoxNzY4MzE1MTc0LCJleHAiOjE3NjgzMTg3NzR9.bCdLdYt7nIwkqSWvcv85veoYUhvC8VrOMAqeB-eV8EQ",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{pras-gateway}}/auth/user-from-token",
+									"host": [
+										"{{pras-gateway}}"
+									],
+									"path": [
+										"auth",
+										"user-from-token"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getAllUser",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiRU1QTE9ZRUUiLCJzdWIiOiJ2aWNreS5rdW1hckB0Y3MuY29tIiwiaWF0IjoxNzY4MzE1MTc0LCJleHAiOjE3NjgzMTg3NzR9.bCdLdYt7nIwkqSWvcv85veoYUhvC8VrOMAqeB-eV8EQ",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{pras-gateway}}/auth/internal/users",
+									"host": [
+										"{{pras-gateway}}"
+									],
+									"path": [
+										"auth",
+										"internal",
+										"users"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deleteUser",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiRU1QTE9ZRUUiLCJzdWIiOiJ2aWNreS5rdW1hckB0Y3MuY29tIiwiaWF0IjoxNzY4MzEyMzU2LCJleHAiOjE3NjgzMTU5NTZ9.eZVrIYOhygu_4YflvAsll4wgwb7wi7_KUUDvgsh6kSA",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"vicky.kumar@tcs.com\",\r\n    \"password\": \"Password@123\"\r\n}"
+								},
+								"url": {
+									"raw": "{{pras-gateway}}/auth/internal/users/1",
+									"host": [
+										"{{pras-gateway}}"
+									],
+									"path": [
+										"auth",
+										"internal",
+										"users",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "employee-service",
+					"item": [
+						{
+							"name": "createEmployee",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiRU1QTE9ZRUUiLCJzdWIiOiJ2aWNreS5rdW1hckB0Y3MuY29tIiwiaWF0IjoxNzY4MzE1MTc0LCJleHAiOjE3NjgzMTg3NzR9.bCdLdYt7nIwkqSWvcv85veoYUhvC8VrOMAqeB-eV8EQ",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"experienceYears\": 5,\r\n    \"location\": \"Hyderabad\",\r\n    \"skills\": [\r\n        {\r\n            \"name\": \"Java\",\r\n            \"proficiency\": \"BEGINNER\"\r\n        },\r\n        {\r\n            \"name\": \"Golang\",\r\n            \"proficiency\": \"EXPERT\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/employees",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"employees"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "updateEmployee",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiRU1QTE9ZRUUiLCJzdWIiOiJ2aWNreS5rdW1hckB0Y3MuY29tIiwiaWF0IjoxNzY4MzE1MTc0LCJleHAiOjE3NjgzMTg3NzR9.bCdLdYt7nIwkqSWvcv85veoYUhvC8VrOMAqeB-eV8EQ",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"experienceYears\": 1,\r\n    \"location\": \"Hyderabad\",\r\n    \"skills\": [\r\n        {\r\n            \"name\": \"Java\",\r\n            \"proficiency\": \"BEGINNER\"\r\n        },\r\n        {\r\n            \"name\": \"Golang\",\r\n            \"proficiency\": \"EXPERT\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/employees/3",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"employees",
+										"3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getEmployee",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiRU1QTE9ZRUUiLCJzdWIiOiJ2aWNreS5rdW1hckB0Y3MuY29tIiwiaWF0IjoxNzY4MzEyMzU2LCJleHAiOjE3NjgzMTU5NTZ9.eZVrIYOhygu_4YflvAsll4wgwb7wi7_KUUDvgsh6kSA",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"experienceYears\": 1,\r\n    \"location\": \"Hyderabad\",\r\n    \"skills\": [\r\n        {\r\n            \"name\": \"Java\",\r\n            \"proficiency\": \"BEGINNER\"\r\n        },\r\n        {\r\n            \"name\": \"Golang\",\r\n            \"proficiency\": \"EXPERT\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/employees/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"employees",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "allEmployee",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiRU1QTE9ZRUUiLCJzdWIiOiJ2aWNreS5rdW1hckB0Y3MuY29tIiwiaWF0IjoxNzY4MzEyMzU2LCJleHAiOjE3NjgzMTU5NTZ9.eZVrIYOhygu_4YflvAsll4wgwb7wi7_KUUDvgsh6kSA",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"experienceYears\": 1,\r\n    \"location\": \"Hyderabad\",\r\n    \"skills\": [\r\n        {\r\n            \"name\": \"Java\",\r\n            \"proficiency\": \"BEGINNER\"\r\n        },\r\n        {\r\n            \"name\": \"Golang\",\r\n            \"proficiency\": \"EXPERT\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/employees",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"employees"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deleteEmployee",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiRU1QTE9ZRUUiLCJzdWIiOiJ2aWNreS5rdW1hckB0Y3MuY29tIiwiaWF0IjoxNzY4MzEyMzU2LCJleHAiOjE3NjgzMTU5NTZ9.eZVrIYOhygu_4YflvAsll4wgwb7wi7_KUUDvgsh6kSA",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"vicky.kumar@tcs.com\",\r\n    \"password\": \"Password@123\"\r\n}"
+								},
+								"url": {
+									"raw": "{{pras-gateway}}/employees/1",
+									"host": [
+										"{{pras-gateway}}"
+									],
+									"path": [
+										"employees",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "project-service",
+					"item": [
+						{
+							"name": "createProject",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiRU1QTE9ZRUUiLCJzdWIiOiJtYW5hZ2VyQHRjcy5jb20iLCJpYXQiOjE3NjgzMTkwMDQsImV4cCI6MTc2ODMyMjYwNH0.pfwVibpR0uksGZnK9C1_0LAGf8UmKRWFnjIvlQYA4QY",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"projectName\": \"Website Redesign\",\r\n  \"projectCode\": \"PRJ-2026-001\",\r\n  \"description\": \"Redesign of the corporate website to improve UX and performance.\",\r\n  \"managerUserId\": 12345,\r\n  \"startDate\": \"2026-01-01T00:00:00Z\",\r\n  \"endDate\": \"2026-06-30T23:59:59Z\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{pras-gateway}}/project",
+									"host": [
+										"{{pras-gateway}}"
+									],
+									"path": [
+										"project"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getAllProjects",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiRU1QTE9ZRUUiLCJzdWIiOiJtYW5hZ2VyQHRjcy5jb20iLCJpYXQiOjE3NjgzMTkwMDQsImV4cCI6MTc2ODMyMjYwNH0.pfwVibpR0uksGZnK9C1_0LAGf8UmKRWFnjIvlQYA4QY",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"projectName\": \"Website Redesign\",\r\n  \"projectCode\": \"PRJ-2026-001\",\r\n  \"description\": \"Redesign of the corporate website to improve UX and performance.\",\r\n  \"managerUserId\": 12345,\r\n  \"startDate\": \"2026-01-01T00:00:00Z\",\r\n  \"endDate\": \"2026-06-30T23:59:59Z\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{pras-gateway}}/project",
+									"host": [
+										"{{pras-gateway}}"
+									],
+									"path": [
+										"project"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getProjectById",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiRU1QTE9ZRUUiLCJzdWIiOiJtYW5hZ2VyQHRjcy5jb20iLCJpYXQiOjE3NjgzMTkwMDQsImV4cCI6MTc2ODMyMjYwNH0.pfwVibpR0uksGZnK9C1_0LAGf8UmKRWFnjIvlQYA4QY",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"projectName\": \"Website Redesign\",\r\n  \"projectCode\": \"PRJ-2026-001\",\r\n  \"description\": \"Redesign of the corporate website to improve UX and performance.\",\r\n  \"managerUserId\": 12345,\r\n  \"startDate\": \"2026-01-01T00:00:00Z\",\r\n  \"endDate\": \"2026-06-30T23:59:59Z\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{pras-gateway}}/project/1",
+									"host": [
+										"{{pras-gateway}}"
+									],
+									"path": [
+										"project",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deleteProject",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiRU1QTE9ZRUUiLCJzdWIiOiJtYW5hZ2VyQHRjcy5jb20iLCJpYXQiOjE3NjgzMTkwMDQsImV4cCI6MTc2ODMyMjYwNH0.pfwVibpR0uksGZnK9C1_0LAGf8UmKRWFnjIvlQYA4QY",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"projectName\": \"Website Redesign\",\r\n  \"projectCode\": \"PRJ-2026-001\",\r\n  \"description\": \"Redesign of the corporate website to improve UX and performance.\",\r\n  \"managerUserId\": 12345,\r\n  \"startDate\": \"2026-01-01T00:00:00Z\",\r\n  \"endDate\": \"2026-06-30T23:59:59Z\"\r\n}\r\n"
+								},
+								"url": {
+									"raw": "{{pras-gateway}}/project/2",
+									"host": [
+										"{{pras-gateway}}"
+									],
+									"path": [
+										"project",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ceateResourceReq",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiRU1QTE9ZRUUiLCJzdWIiOiJtYW5hZ2VyQHRjcy5jb20iLCJpYXQiOjE3NjgzMjM0NjIsImV4cCI6MTc2ODMyNzA2Mn0.T7rsx0aD99szZlQg56yg_LuqzaWWeLfW_4S6aDJt0Uc",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"totalRequired\": 2,\r\n    \"minExperienceYears\": 2,\r\n    \"priority\": \"HIGH\",\r\n    \"skills\": [\r\n        {\r\n            \"skillName\": \"Java\",\r\n            \"requiredCount\": 2,\r\n            \"minProficiency\": \"INTERMEDIATE\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{pras-gateway}}/project/1/resource-requests",
+									"host": [
+										"{{pras-gateway}}"
+									],
+									"path": [
+										"project",
+										"1",
+										"resource-requests"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getAllResourceReq",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiRU1QTE9ZRUUiLCJzdWIiOiJtYW5hZ2VyQHRjcy5jb20iLCJpYXQiOjE3NjgzMjM0NjIsImV4cCI6MTc2ODMyNzA2Mn0.T7rsx0aD99szZlQg56yg_LuqzaWWeLfW_4S6aDJt0Uc",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"totalRequired\": 2,\r\n    \"minExperienceYears\": 2,\r\n    \"priority\": \"HIGH\",\r\n    \"skills\": [\r\n        {\r\n            \"skillName\": \"Java\",\r\n            \"requiredCount\": 2,\r\n            \"minProficiency\": \"INTERMEDIATE\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{pras-gateway}}/project/1/resource-requests",
+									"host": [
+										"{{pras-gateway}}"
+									],
+									"path": [
+										"project",
+										"1",
+										"resource-requests"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getResourceReqById",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiRU1QTE9ZRUUiLCJzdWIiOiJtYW5hZ2VyQHRjcy5jb20iLCJpYXQiOjE3NjgzMjM0NjIsImV4cCI6MTc2ODMyNzA2Mn0.T7rsx0aD99szZlQg56yg_LuqzaWWeLfW_4S6aDJt0Uc",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"totalRequired\": 2,\r\n    \"minExperienceYears\": 2,\r\n    \"priority\": \"HIGH\",\r\n    \"skills\": [\r\n        {\r\n            \"skillName\": \"Java\",\r\n            \"requiredCount\": 2,\r\n            \"minProficiency\": \"INTERMEDIATE\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{pras-gateway}}/project/internal/resource-requests/1",
+									"host": [
+										"{{pras-gateway}}"
+									],
+									"path": [
+										"project",
+										"internal",
+										"resource-requests",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getAllResourceReqFilter",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiRU1QTE9ZRUUiLCJzdWIiOiJtYW5hZ2VyQHRjcy5jb20iLCJpYXQiOjE3NjgzMjM0NjIsImV4cCI6MTc2ODMyNzA2Mn0.T7rsx0aD99szZlQg56yg_LuqzaWWeLfW_4S6aDJt0Uc",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"totalRequired\": 2,\r\n    \"minExperienceYears\": 2,\r\n    \"priority\": \"HIGH\",\r\n    \"skills\": [\r\n        {\r\n            \"skillName\": \"Java\",\r\n            \"requiredCount\": 2,\r\n            \"minProficiency\": \"INTERMEDIATE\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{pras-gateway}}/project/internal/resource-requests",
+									"host": [
+										"{{pras-gateway}}"
+									],
+									"path": [
+										"project",
+										"internal",
+										"resource-requests"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "suggestCandidate",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiRU1QTE9ZRUUiLCJzdWIiOiJtYW5hZ2VyQHRjcy5jb20iLCJpYXQiOjE3NjgzMjM0NjIsImV4cCI6MTc2ODMyNzA2Mn0.T7rsx0aD99szZlQg56yg_LuqzaWWeLfW_4S6aDJt0Uc",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"employeeId\": 1,\r\n    \"suggestedByUserId\": 2,\r\n    \"matchScore\": 0.92\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{pras-gateway}}/project/internal/resource-requests/1/suggest",
+									"host": [
+										"{{pras-gateway}}"
+									],
+									"path": [
+										"project",
+										"internal",
+										"resource-requests",
+										"1",
+										"suggest"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "seeSuggestedCandidate",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiRU1QTE9ZRUUiLCJzdWIiOiJtYW5hZ2VyQHRjcy5jb20iLCJpYXQiOjE3NjgzMjM0NjIsImV4cCI6MTc2ODMyNzA2Mn0.T7rsx0aD99szZlQg56yg_LuqzaWWeLfW_4S6aDJt0Uc",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"employeeId\": 1,\r\n    \"suggestedByUserId\": 2,\r\n    \"matchScore\": 0.92\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{pras-gateway}}/project/internal/resource-requests/1/suggestions",
+									"host": [
+										"{{pras-gateway}}"
+									],
+									"path": [
+										"project",
+										"internal",
+										"resource-requests",
+										"1",
+										"suggestions"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "reviewSuggestion",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiRU1QTE9ZRUUiLCJzdWIiOiJtYW5hZ2VyQHRjcy5jb20iLCJpYXQiOjE3NjgzMjM0NjIsImV4cCI6MTc2ODMyNzA2Mn0.T7rsx0aD99szZlQg56yg_LuqzaWWeLfW_4S6aDJt0Uc",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"employeeId\": 1,\r\n    \"suggestedByUserId\": 2,\r\n    \"matchScore\": 0.92\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{pras-gateway}}/project/internal/suggestions/1/review?approve=true&feedback=approving",
+									"host": [
+										"{{pras-gateway}}"
+									],
+									"path": [
+										"project",
+										"internal",
+										"suggestions",
+										"1",
+										"review"
+									],
+									"query": [
+										{
+											"key": "approve",
+											"value": "true"
+										},
+										{
+											"key": "feedback",
+											"value": "approving"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "allocateEmployee(Project)",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiRU1QTE9ZRUUiLCJzdWIiOiJtYW5hZ2VyQHRjcy5jb20iLCJpYXQiOjE3NjgzMjM0NjIsImV4cCI6MTc2ODMyNzA2Mn0.T7rsx0aD99szZlQg56yg_LuqzaWWeLfW_4S6aDJt0Uc",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"employeeId\": 1,\r\n    \"suggestedByUserId\": 2,\r\n    \"matchScore\": 0.92\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{pras-gateway}}/project/internal/resource-requests/1/allocate?employeeId=1&allocatedByUserId=2",
+									"host": [
+										"{{pras-gateway}}"
+									],
+									"path": [
+										"project",
+										"internal",
+										"resource-requests",
+										"1",
+										"allocate"
+									],
+									"query": [
+										{
+											"key": "employeeId",
+											"value": "1"
+										},
+										{
+											"key": "allocatedByUserId",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getAllAllocationsForRequest",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiRU1QTE9ZRUUiLCJzdWIiOiJtYW5hZ2VyQHRjcy5jb20iLCJpYXQiOjE3NjgzMjM0NjIsImV4cCI6MTc2ODMyNzA2Mn0.T7rsx0aD99szZlQg56yg_LuqzaWWeLfW_4S6aDJt0Uc",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"employeeId\": 1,\r\n    \"suggestedByUserId\": 2,\r\n    \"matchScore\": 0.92\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{pras-gateway}}/project/internal/allocations/request/1",
+									"host": [
+										"{{pras-gateway}}"
+									],
+									"path": [
+										"project",
+										"internal",
+										"allocations",
+										"request",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "allocation-service",
+					"item": [
+						{
+							"name": "getSuggestedEmployee",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						},
+						{
+							"name": "allocate employee",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiRU1QTE9ZRUUiLCJzdWIiOiJtYW5hZ2VyQHRjcy5jb20iLCJpYXQiOjE3NjgzMzUxMDYsImV4cCI6MTc2ODMzODcwNn0.bOxGSTmVPf3I2R4An17oQbrqia8ahP66YbDwmnGhGv8",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{pras-gateway}}/allocation/1/allocate?employeeId=1&allocatedByUserId=2",
+									"host": [
+										"{{pras-gateway}}"
+									],
+									"path": [
+										"allocation",
+										"1",
+										"allocate"
+									],
+									"query": [
+										{
+											"key": "employeeId",
+											"value": "1"
+										},
+										{
+											"key": "allocatedByUserId",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "release employee",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiRU1QTE9ZRUUiLCJzdWIiOiJtYW5hZ2VyQHRjcy5jb20iLCJpYXQiOjE3NjgzMzUxMDYsImV4cCI6MTc2ODMzODcwNn0.bOxGSTmVPf3I2R4An17oQbrqia8ahP66YbDwmnGhGv8",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{pras-gateway}}/allocation/release/1",
+									"host": [
+										"{{pras-gateway}}"
+									],
+									"path": [
+										"allocation",
+										"release",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "pras-gateway",
+			"value": "",
+			"type": "default"
+		}
+	]
+}

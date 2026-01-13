@@ -1,20 +1,28 @@
 package com.tcs.allocation.client;
 
-import com.tcs.allocation.dto.CandidateCreateDto;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.List;
-import java.util.Map;
+import com.tcs.allocation.dto.AllocationDto;
+import com.tcs.allocation.dto.ResourceRequestResponseDto;
 
 @FeignClient(name = "project-service", configuration = com.tcs.allocation.config.FeignConfig.class)
 public interface ProjectClient {
 
-    // push suggestions to Project service
-    @PostMapping("/api/internal/resource-requests/{requestId}/suggest")
-    Map<String,Object> pushSuggestion(@PathVariable("requestId") Long requestId, @RequestBody CandidateCreateDto dto);
+	@PostMapping("/project/internal/resource-requests/{id}/allocate")
+	public ResponseEntity<AllocationDto> allocate(@PathVariable Long id, @RequestParam Long employeeId,
+			@RequestParam Long allocatedByUserId);
 
-    // optional: ask project for resource request details
-    @GetMapping("/api/internal/resource-requests/{id}")
-    Map<String,Object> getResourceRequest(@PathVariable("id") Long id);
+	@PostMapping("/project/internal/allocations/{id}/release")
+	public ResponseEntity<Void> release(@PathVariable Long id);
+
+	@GetMapping("/project/internal/allocations/{id}")
+	public ResponseEntity<AllocationDto> getAllocation(@PathVariable Long id);
+
+	@GetMapping("/project/internal/resource-requests/{id}")
+    public ResponseEntity<ResourceRequestResponseDto> getRequest(@PathVariable Long id);
 }

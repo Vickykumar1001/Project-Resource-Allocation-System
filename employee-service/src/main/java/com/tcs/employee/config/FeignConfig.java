@@ -1,7 +1,6 @@
 package com.tcs.employee.config;
 
 import feign.RequestInterceptor;
-import feign.RequestTemplate;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

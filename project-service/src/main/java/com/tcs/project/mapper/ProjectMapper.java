@@ -1,8 +1,17 @@
 package com.tcs.project.mapper;
 
-import com.tcs.project.dto.*;
-import com.tcs.project.entity.*;
+
 import java.util.stream.Collectors;
+
+import com.tcs.project.dto.AllocationDto;
+import com.tcs.project.dto.CandidateSuggestionDto;
+import com.tcs.project.dto.ProjectResponseDto;
+import com.tcs.project.dto.ResourceRequestResponseDto;
+import com.tcs.project.dto.SkillRequirementDto;
+import com.tcs.project.entity.AllocationRecord;
+import com.tcs.project.entity.CandidateSuggestion;
+import com.tcs.project.entity.Project;
+import com.tcs.project.entity.ResourceRequest;
 
 public class ProjectMapper {
 

@@ -1,10 +1,15 @@
 package com.tcs.project.repository;
 
-import com.tcs.project.entity.Project;
-import org.springframework.data.domain.*;
+import java.util.Optional;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import com.tcs.project.entity.Project;
+
 public interface ProjectRepository extends JpaRepository<Project, Long> {
-    Page<Project> findAllByDeletedFalse(Pageable pageable);
+	Optional<Project> findByIdAndDeletedFalse(Long id);
+	Page<Project> findAllByDeletedFalse(Pageable pageable);
     Page<Project> findByManagerUserIdAndDeletedFalse(Long managerUserId, Pageable pageable);
 }

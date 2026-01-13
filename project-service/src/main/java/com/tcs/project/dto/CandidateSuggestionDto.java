@@ -9,6 +9,6 @@ public class CandidateSuggestionDto {
     private Long employeeId;
     private Long suggestedByUserId;
     private Double matchScore;
-    private String status; // SUGGESTED, INTERVIEW_SCHEDULED, APPROVED, REJECTED
+    private String status;
     private String managerFeedback;
 }

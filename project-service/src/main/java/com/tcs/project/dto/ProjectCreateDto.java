@@ -6,11 +6,12 @@ import java.time.Instant;
 
 @Data
 public class ProjectCreateDto {
-    @NotBlank
-    private String projectName;
-    private String projectCode;
-    private String description;
-    private Long managerUserId;
-    private Instant startDate;
-    private Instant endDate;
+	@NotBlank
+	private String projectName;
+	private String projectCode;
+	private String description;
+	private Long managerUserId;
+	private Instant startDate;
+	private Instant endDate;
+	private String status;
 }

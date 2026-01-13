@@ -6,9 +6,8 @@ import java.util.List;
 
 @Data
 public class ResourceRequestCreateDto {
-    @NotNull
     private Integer totalRequired;
     private Integer minExperienceYears;
-    private String priority; // LOW/MEDIUM/HIGH
+    private String priority;
     private List<SkillRequirementDto> skills;
 }

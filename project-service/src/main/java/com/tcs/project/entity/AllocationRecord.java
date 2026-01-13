@@ -5,7 +5,7 @@ import lombok.*;
 import java.time.Instant;
 
 @Entity
-@Table(name = "allocation_record")
+@Table
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -19,7 +19,7 @@ public class AllocationRecord {
     private Long projectId;
     private Long resourceRequestId;
 
-    private Long allocatedByUserId; // RMG who performed allocation
+    private Long allocatedByUserId; // who performed allocation
     private Instant allocatedAt;
 
     @Enumerated(EnumType.STRING)

@@ -44,7 +44,6 @@ public class InternalEmployeeController {
         }
     }
 
-    // POST /api/internal/employees/{id}/claim?projectId=123
     @PostMapping("/{id}/claim")
     public ResponseEntity<?> claim(@PathVariable Long id, @RequestParam Long projectId) {
         boolean ok = service.claimForAllocation(id, projectId);
